@@ -37,6 +37,15 @@ public class InflaterController : MonoBehaviour
 
     public GameObject BalloonInflated;
 
+
+    public GameObject BalloonCanvas;
+
+
+    
+
+
+    public GameObject IndeflaterHelper;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,10 +63,13 @@ public class InflaterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(IndeflaterHelper.activeSelf)
+        {
+            gripValue = gripAction.GetAxis(inputSource);
+            slider.value = gripValue;
+        }
 
-
-        gripValue = gripAction.GetAxis(inputSource);
-        slider.value = gripValue;
+        
 
         animator.Play("InflaterINOUT", -1, slider.normalizedValue);
         animator1.Play("InfalterPointer", -1, slider.normalizedValue);
@@ -90,7 +102,8 @@ public class InflaterController : MonoBehaviour
                 {
                     caseV = 1;
                     BalloonInflated.SetActive(true);
-                }
+                    BalloonCanvas.SetActive(false);
+                                    }
             }
             
         }

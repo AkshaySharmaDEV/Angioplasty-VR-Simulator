@@ -25,6 +25,9 @@ public class NeedleController : MonoBehaviour
     public Rigidbody objectRigidbody;
 
 
+   
+
+
 
 
 
@@ -64,6 +67,9 @@ public class NeedleController : MonoBehaviour
     {
         if ( slider.value >= 0.99f)
         {
+
+            
+
             GuideWIREHand.SetActive(false);
             GuideWIREUI.SetActive(false);
             
@@ -83,6 +89,7 @@ public class NeedleController : MonoBehaviour
         yield return new WaitForSeconds(delayInSeconds);
         objectToDeActivate.SetActive(false);
 
+        
 
         needleInAction.SetActive(false);
         GuideWIRECompletionUI.SetActive(false);

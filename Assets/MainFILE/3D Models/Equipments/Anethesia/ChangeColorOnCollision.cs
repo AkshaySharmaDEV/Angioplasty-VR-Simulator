@@ -9,7 +9,7 @@ public class ChangeColorOnCollision : MonoBehaviour
     public GameObject uiInserted;
 
 
-    
+    public GameObject AnesthesiaMain;
 
     public GameObject objectToDeActivate;
     public float delayInSeconds = 3f;
@@ -41,6 +41,8 @@ public class ChangeColorOnCollision : MonoBehaviour
     {
         if (PusherLiquidController.gripValue >= 0.9f)
         {
+            
+
             isProcessStartedAnesthesia = 1;
             
             uiSuccessfulInserted.SetActive(true);
@@ -69,6 +71,9 @@ public class ChangeColorOnCollision : MonoBehaviour
         gameObject.SetActive(false);
         objectRigidbody.isKinematic = false;
         objectCollider.enabled = true;
+
+        AnesthesiaMain.SetActive(false);
+
     }
 
 

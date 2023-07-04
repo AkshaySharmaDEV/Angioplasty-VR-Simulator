@@ -24,6 +24,8 @@ public class PusherLiquidController : MonoBehaviour
 
     public GameObject liquid;
 
+    
+
   
 
 
@@ -35,7 +37,7 @@ public class PusherLiquidController : MonoBehaviour
         {
             anesthesiaHighlighter.SetActive(false);
             uiGuide.SetActive(false);
-
+            
             uiInserted.SetActive(true);
 
 
@@ -57,17 +59,22 @@ public class PusherLiquidController : MonoBehaviour
 
     private void Update()
     {
-        gripValue = gripAction.GetAxis(inputSource);
-        slider.value = gripValue;
+
+        if(!anesthesiaHighlighter.activeSelf)
+        {
+            gripValue = gripAction.GetAxis(inputSource);
+            slider.value = gripValue;
 
 
-        float newYValue = Mathf.Lerp(minYValue, maxYValue, slider.value);
-        yAxisTransform.localPosition = new Vector3(yAxisTransform.localPosition.x, newYValue, yAxisTransform.localPosition.z);
+            float newYValue = Mathf.Lerp(minYValue, maxYValue, slider.value);
+            yAxisTransform.localPosition = new Vector3(yAxisTransform.localPosition.x, newYValue, yAxisTransform.localPosition.z);
 
-        float liquidScale = Mathf.Lerp(1f, 0f, slider.value);
-        Vector3 liquidScaleVector = liquid.transform.localScale;
-        liquidScaleVector.y = liquidScale;
-        liquid.transform.localScale = liquidScaleVector;
+            float liquidScale = Mathf.Lerp(1f, 0f, slider.value);
+            Vector3 liquidScaleVector = liquid.transform.localScale;
+            liquidScaleVector.y = liquidScale;
+            liquid.transform.localScale = liquidScaleVector;
+        }
+        
 
     }
 
