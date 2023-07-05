@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FollowHeartMaterial
-  m_Shader: {fileID: 4800000, guid: cc337af5916ebf748b2b4ec87c8a9fc5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1732e48c42ab2a44192ae2fadec67f0b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -98,6 +98,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Intensity: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
