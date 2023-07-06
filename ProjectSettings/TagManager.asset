@@ -15,6 +15,7 @@ TagManager:
   - GameObjectTag
   - Sheath
   - RIghtHANDTrigger
+  - UI
   layers:
   - Default
   - TransparentFX

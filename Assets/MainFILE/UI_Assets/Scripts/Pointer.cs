@@ -22,16 +22,25 @@ public class Pointer : MonoBehaviour
     void UpdateLine()
     {
         PointerEventData data = m_InputModule.GetData();
-        float targetLength = data.pointerCurrentRaycast.distance == 0?
-            m_defaultLength : data.pointerCurrentRaycast.distance;
+        float targetLength = data.pointerCurrentRaycast.distance == 0 ?
+            0 : data.pointerCurrentRaycast.distance;
         RaycastHit hit = CreateRaycast(targetLength);
         Vector3 endPosition = transform.position + (transform.forward * targetLength);
 
-        if (hit.collider != null) endPosition = hit.point;
-
-        m_Dot.transform.position = endPosition;
-        m_LineRenderer.SetPosition(0, transform.position);
-        m_LineRenderer.SetPosition(1, endPosition);
+        if (hit.collider != null || (targetLength == 0))
+        {
+            endPosition = transform.position;
+            m_Dot.SetActive(false);
+            m_LineRenderer.SetPosition(0, transform.position);
+            m_LineRenderer.SetPosition(1, transform.position);
+        }
+        else
+        {
+            m_Dot.SetActive(true);
+            m_Dot.transform.position = endPosition;
+            m_LineRenderer.SetPosition(0, transform.position);
+            m_LineRenderer.SetPosition(1, endPosition);
+        }
     }
 
     private RaycastHit CreateRaycast(float length)
