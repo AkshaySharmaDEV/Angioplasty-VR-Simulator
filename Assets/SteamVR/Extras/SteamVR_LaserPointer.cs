@@ -1,11 +1,18 @@
 ﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading;
+
 
 namespace Valve.VR.Extras
 {
     public class SteamVR_LaserPointer : MonoBehaviour
     {
+        
+
         public SteamVR_Behaviour_Pose pose;
 
         //public SteamVR_Action_Boolean interactWithUI = SteamVR_Input.__actions_default_in_InteractUI;
@@ -26,17 +33,22 @@ namespace Valve.VR.Extras
 
         Transform previousContact = null;
 
+        public AudioSource audioSource;
+
+
+        public GameObject TutorialsUI;
+        public GameObject CreditsUI;
+
+        public GameObject MainUI;
+
 
         private void Start()
         {
+            
+
             if (pose == null)
                 pose = this.GetComponent<SteamVR_Behaviour_Pose>();
-            if (pose == null)
-                Debug.LogError("No SteamVR_Behaviour_Pose component found on this object", this);
-
-            if (interactWithUI == null)
-                Debug.LogError("No ui interaction action has been set on this component.", this);
-
+            
 
             holder = new GameObject();
             holder.transform.parent = this.transform;
@@ -140,6 +152,55 @@ namespace Valve.VR.Extras
                 argsClick.flags = 0;
                 argsClick.target = hit.transform;
                 OnPointerClick(argsClick);
+                
+
+                
+
+
+                if (hit.collider.CompareTag("Start"))
+                {
+
+                    SceneManager.LoadSceneAsync(1);
+                    audioSource.Play();
+                }
+
+                
+
+                if (hit.collider.CompareTag("Quit"))
+                {
+                    Application.Quit();
+                    audioSource.Play();
+                }
+
+
+                if (hit.collider.CompareTag("Tutorials"))
+                {
+                    TutorialsUI.SetActive(true);
+                    audioSource.Play();
+                    MainUI.SetActive(false);
+                }
+
+                if (hit.collider.CompareTag("UIQuit1"))
+                {
+                    TutorialsUI.SetActive(false);
+                    audioSource.Play();
+                    MainUI.SetActive(true);
+                }
+
+                if (hit.collider.CompareTag("Credits"))
+                {
+                    CreditsUI.SetActive(true);
+                    audioSource.Play();
+                    MainUI.SetActive(false);
+                }
+
+                if (hit.collider.CompareTag("UIQuit2"))
+                {
+                    CreditsUI.SetActive(false);
+                    audioSource.Play();
+                    MainUI.SetActive(true);
+                }
+
             }
 
             if (interactWithUI != null && interactWithUI.GetState(pose.inputSource))
@@ -155,6 +216,10 @@ namespace Valve.VR.Extras
             pointer.transform.localPosition = new Vector3(0f, 0f, dist / 2f);
         }
     }
+
+    
+
+   
 
     public struct PointerEventArgs
     {

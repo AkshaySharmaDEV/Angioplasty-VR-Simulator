@@ -15,7 +15,16 @@ TagManager:
   - GameObjectTag
   - Sheath
   - RIghtHANDTrigger
-  - UI
+  - Projectile
+  - Flame
+  - Water
+  - Destroyer
+  - Start
+  - Quit
+  - Tutorials
+  - Credits
+  - UIQuit1
+  - UIQuit2
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
@@ -45,6 +46,11 @@ public class InflaterController : MonoBehaviour
 
 
     public GameObject IndeflaterHelper;
+
+
+    public GameObject EndUI;
+
+    public Timer timer;
 
     // Start is called before the first frame update
     void Start()
@@ -103,7 +109,10 @@ public class InflaterController : MonoBehaviour
                     caseV = 1;
                     BalloonInflated.SetActive(true);
                     BalloonCanvas.SetActive(false);
-                                    }
+
+                    EndUI.SetActive(true);
+                    timer.StopTimer();
+                }
             }
             
         }
