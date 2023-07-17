@@ -25,8 +25,8 @@ public class NeedleController : MonoBehaviour
     public Rigidbody objectRigidbody;
 
 
-   
 
+    public DialougeSystem DiaSys;
 
 
 
@@ -55,10 +55,11 @@ public class NeedleController : MonoBehaviour
             
             
 
-            isAnimationPlaying = true; 
+            isAnimationPlaying = true;
 
-           
-    
+            DiaSys.ShowCaption("Now Insert the guide wire with your right hand", 3.0f);
+
+
 
         }
     }
@@ -76,7 +77,8 @@ public class NeedleController : MonoBehaviour
             GuideWIRECompletionUI.SetActive(true);
             uiGuide.SetActive(false);
             uiInserted.SetActive(false);
-            
+
+           
 
             StartCoroutine(ActivateObjectCoroutine());
 
@@ -89,7 +91,7 @@ public class NeedleController : MonoBehaviour
         yield return new WaitForSeconds(delayInSeconds);
         objectToDeActivate.SetActive(false);
 
-        
+        DiaSys.ShowCaption("Now pickup the sheath from the table", 3.0f);
 
         needleInAction.SetActive(false);
         GuideWIRECompletionUI.SetActive(false);
@@ -98,6 +100,8 @@ public class NeedleController : MonoBehaviour
         objectRigidbody.isKinematic = false;
         objectCollider.enabled = true;
         gameObject.SetActive(false);
+
+
 
 
     }

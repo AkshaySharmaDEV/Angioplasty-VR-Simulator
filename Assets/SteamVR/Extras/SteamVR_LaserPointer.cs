@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Threading;
 
 
+
 namespace Valve.VR.Extras
 {
     public class SteamVR_LaserPointer : MonoBehaviour
@@ -41,6 +42,10 @@ namespace Valve.VR.Extras
 
         public GameObject MainUI;
 
+        public AudioSource audioSource1;
+
+
+        private int audiostatus = 0;
 
         private void Start()
         {
@@ -144,6 +149,31 @@ namespace Valve.VR.Extras
                 dist = hit.distance;
             }
 
+
+            
+            if (audioSource1.isPlaying)
+            {
+                audiostatus = 1;
+            }
+            else
+            {
+                audiostatus = 0;
+            }
+
+            if (bHit)
+            {
+
+                if(audiostatus == 0) 
+                {
+                    if(hit.collider.CompareTag("Start") || hit.collider.CompareTag("Credits") || hit.collider.CompareTag("Quit") || hit.collider.CompareTag("Tutorials") || hit.collider.CompareTag("UIQuit2") || hit.collider.CompareTag("UIQuit1"))
+                    {
+                        audioSource1.Play();
+                    }
+                    
+                }
+                
+            }
+
             if (bHit && interactWithUI.GetStateUp(pose.inputSource))
             {
                 PointerEventArgs argsClick = new PointerEventArgs();
@@ -168,10 +198,13 @@ namespace Valve.VR.Extras
 
                 if (hit.collider.CompareTag("Quit"))
                 {
-                    Application.Quit();
+                    
                     audioSource.Play();
+                    Application.Quit();
                 }
 
+
+                
 
                 if (hit.collider.CompareTag("Tutorials"))
                 {
@@ -217,9 +250,8 @@ namespace Valve.VR.Extras
         }
     }
 
-    
 
-   
+    
 
     public struct PointerEventArgs
     {

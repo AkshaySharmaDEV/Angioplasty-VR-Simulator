@@ -52,6 +52,10 @@ public class InflaterController : MonoBehaviour
 
     public Timer timer;
 
+    public GameObject MagView;
+
+    public DialougeSystem DiaSys;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,16 +110,39 @@ public class InflaterController : MonoBehaviour
 
                 if (mappedValue == 0.0f)
                 {
+                    
                     caseV = 1;
                     BalloonInflated.SetActive(true);
                     BalloonCanvas.SetActive(false);
 
-                    EndUI.SetActive(true);
+                    DiaSys.ShowCaption("Congrats, you have completed the procedure. Stent placement is optional depends on complexity of blockage!", 3.0f);
+
+                    
                     timer.StopTimer();
+
+                    StartCoroutine(ActivateObjectCoroutine());
+
                 }
             }
             
         }
+
+
+
+    }
+
+
+
+    private System.Collections.IEnumerator ActivateObjectCoroutine()
+    {
+        
+        yield return new WaitForSeconds(3.0f);
+
+        MagView.SetActive(false);
+
+        EndUI.SetActive(true);
+
+
 
     }
 }

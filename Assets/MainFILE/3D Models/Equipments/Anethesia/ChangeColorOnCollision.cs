@@ -20,6 +20,8 @@ public class ChangeColorOnCollision : MonoBehaviour
     public Collider objectCollider;
     public Rigidbody objectRigidbody;
 
+    public EquipmentDialouge EquDia;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -73,6 +75,8 @@ public class ChangeColorOnCollision : MonoBehaviour
         objectCollider.enabled = true;
 
         AnesthesiaMain.SetActive(false);
+
+        EquDia.CaptionShow();
 
     }
 

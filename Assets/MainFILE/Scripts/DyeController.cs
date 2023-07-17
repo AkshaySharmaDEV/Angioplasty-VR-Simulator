@@ -46,9 +46,17 @@ public class DyeController : MonoBehaviour
 
     private bool isAnimating;
 
+    public DialougeSystem DiaSys;
+
+    public GameObject MagView;
+
     private void Start()
     {
-        
+
+
+        DiaSys.ShowCaption("Insert the dye, to see blockage!", 1.5f);
+
+
         timer = 0f;
         isAnimating = false;
 
@@ -79,6 +87,8 @@ public class DyeController : MonoBehaviour
         if (other.CompareTag(rightWireTagName))
         {
 
+            MagView.SetActive(true);
+
             anim.Play("DyeInsertRotate");
 
             timer = 0f;
@@ -93,6 +103,10 @@ public class DyeController : MonoBehaviour
             BalloonWIREHighlightHAND.SetActive(true);
             BalloonWIREUI.SetActive(true);
             Inflater.SetActive(true);
+
+            
+
+            DiaSys.ShowCaption("Now insert the balloon, you can check balloon inflation before inserting the balloon, just pickup the inflater from my hand and press grip button.", 1.5f);
 
 
         }
@@ -117,7 +131,7 @@ public class DyeController : MonoBehaviour
 
         if (slider.value >= 0.99f)
         {
-
+            
 
             InflateUI.SetActive(true);
 
@@ -125,6 +139,8 @@ public class DyeController : MonoBehaviour
             BalloonWIREHighlightHAND.SetActive(false);
 
             BalloonWIREUI.SetActive(false);
+
+            
 
 
         }

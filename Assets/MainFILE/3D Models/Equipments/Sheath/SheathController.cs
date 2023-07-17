@@ -38,6 +38,10 @@ public class SheathController : MonoBehaviour
 
     public GameObject ReWIRECanvas;
 
+    public DialougeSystem DiaSys;
+
+    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Sheath"))
@@ -57,7 +61,9 @@ public class SheathController : MonoBehaviour
 
             SheathCUBEObject.Play("SheathCUBE");
 
-           
+            DiaSys.ShowCaption("Insert the catheter wire with your right hand", 3.0f);
+
+
 
 
 
@@ -69,6 +75,8 @@ public class SheathController : MonoBehaviour
     {
         if (slider.value >= 0.99f)
         {
+            
+
             CathetherWIREHand.SetActive(false);
             CathetherWIREUI.SetActive(false);
             
@@ -97,8 +105,8 @@ public class SheathController : MonoBehaviour
         yield return new WaitForSeconds(delayInSeconds);
         objectToDeActivate.SetActive(false);
 
+        DiaSys.ShowCaption("Now, remove the guide wire!", 3.0f);
 
-        
         CathetherWIRECompletionUI.SetActive(false);
         SheathCanvas.SetActive(false);
         CathetherCanvas.SetActive(false);
@@ -110,7 +118,7 @@ public class SheathController : MonoBehaviour
 
         ReWIRECanvas.SetActive(true);
 
-
+        
         
 
 

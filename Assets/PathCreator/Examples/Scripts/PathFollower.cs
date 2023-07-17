@@ -14,6 +14,8 @@ namespace PathCreation.Examples
         private float distanceTravelled;
         private bool isStarted;
 
+        
+
         private void Start()
         {
             if (pathCreator != null)
@@ -45,6 +47,7 @@ namespace PathCreation.Examples
         private void StartFollowing()
         {
             isStarted = true;
+            
         }
 
         private void DisableScript()

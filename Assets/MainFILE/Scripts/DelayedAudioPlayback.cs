@@ -7,7 +7,12 @@ public class DelayedAudioPlayback : MonoBehaviour
     public AudioSource audioSource;
     private bool hasPlayed = false;
 
+    public DialougeSystem DiaSys;
+
     
+
+    public string caption;
+    public float revealDuration;
 
     private void Update()
     {
@@ -27,6 +32,7 @@ public class DelayedAudioPlayback : MonoBehaviour
     {
         if (audioSource != null)
         {
+            DiaSys.ShowCaption(caption, revealDuration);
             audioSource.Play();
         }
     }
